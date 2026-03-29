@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Непоседы — Связь детей и родителей"
-        Height="720"
-        Width="1200"
+        Height="920"
+        Width="1400"
         WindowStartupLocation="CenterScreen"
         Background="#F4FBFF">
 
