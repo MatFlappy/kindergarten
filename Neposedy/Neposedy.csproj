@@ -74,6 +74,12 @@
     <Compile Include="WindowsApp\ChildDetailsWindow.xaml.cs">
       <DependentUpon>ChildDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsApp\ChildrenWindow.xaml.cs">
+      <DependentUpon>ChildrenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\GroupsWindow.xaml.cs">
+      <DependentUpon>GroupsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsApp\MyChildrenWindow.xaml.cs">
       <DependentUpon>MyChildrenWindow.xaml</DependentUpon>
     </Compile>
@@ -92,8 +98,14 @@
     <Compile Include="WindowsApp\ParentNotesWindow.xaml.cs">
       <DependentUpon>ParentNotesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsApp\ParentsWindow.xaml.cs">
+      <DependentUpon>ParentsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsApp\ParentWindow.xaml.cs">
       <DependentUpon>ParentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\TeachersWindow.xaml.cs">
+      <DependentUpon>TeachersWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsApp\TeacherWindow.xaml.cs">
       <DependentUpon>TeacherWindow.xaml</DependentUpon>
@@ -115,6 +127,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsApp\ChildDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\ChildrenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\GroupsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,7 +232,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowsApp\ParentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowsApp\ParentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\TeachersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

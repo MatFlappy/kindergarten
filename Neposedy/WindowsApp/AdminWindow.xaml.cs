@@ -17,22 +17,30 @@ namespace NeposedyApp.Windows
 
         private void Children_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно управления детьми сделаем следующим.");
+            ChildrenWindow window = new ChildrenWindow();
+            window.Show();
+            Close();
         }
 
         private void Parents_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно управления родителями сделаем следующим.");
+            ParentsWindow window = new ParentsWindow();
+            window.Show();
+            Close();
         }
 
         private void Teachers_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно управления воспитателями сделаем следующим.");
+            TeachersWindow window = new TeachersWindow();
+            window.Show();
+            Close();
         }
 
         private void Groups_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно управления группами сделаем следующим.");
+            GroupsWindow window = new GroupsWindow();
+            window.Show();
+            Close();
         }
 
         private void Applications_Click(object sender, RoutedEventArgs e)
