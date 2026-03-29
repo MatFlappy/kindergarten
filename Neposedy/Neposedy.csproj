@@ -74,6 +74,9 @@
     <Compile Include="WindowsApp\ChildDetailsWindow.xaml.cs">
       <DependentUpon>ChildDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsApp\ChildParentsWindow.xaml.cs">
+      <DependentUpon>ChildParentsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsApp\ChildrenWindow.xaml.cs">
       <DependentUpon>ChildrenWindow.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsApp\ChildDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\ChildParentsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -189,14 +189,7 @@
                     BorderThickness="0"
                     Click="Close_Click"/>
 
-            <Button Grid.Column="2"
-                    Content="Назад"
-                    Height="48"
-                    Background="#F4D98C"
-                    Foreground="#6E5700"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Click="Back_Click"/>
+            
         </Grid>
     </Grid>
 </Window>

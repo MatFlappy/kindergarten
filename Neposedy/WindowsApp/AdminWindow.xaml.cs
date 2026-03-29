@@ -1,5 +1,6 @@
 ﻿using Neposedy.WindowsApp;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace NeposedyApp.Windows
 {
@@ -55,6 +56,13 @@ namespace NeposedyApp.Windows
             LoginWindow.CurrentUser = null;
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
+            Close();
+        }
+
+        private void ChildParents_Click(object sender, RoutedEventArgs e)
+        {
+            ChildParentsWindow window = new ChildParentsWindow();
+            window.Show();
             Close();
         }
     }

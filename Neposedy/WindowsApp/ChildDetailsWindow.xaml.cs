@@ -55,11 +55,6 @@ namespace NeposedyApp.Windows
             Close();
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            MyChildrenWindow myChildrenWindow = new MyChildrenWindow();
-            myChildrenWindow.Show();
-            Close();
-        }
+        
     }
 }

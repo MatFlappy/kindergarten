@@ -37,6 +37,8 @@
                                Margin="0,6,0,0"
                                FontSize="15"
                                Foreground="#7A92A0"/>
+
+                    <Button Background="#F0D27A" Content="Связь дети-родители" Margin="10" Click="ChildParents_Click"/>
                 </StackPanel>
 
                 <Border Grid.Column="1"
@@ -114,6 +116,8 @@
                                    TextAlignment="Center"
                                    FontSize="14"
                                    Foreground="#6A8391"/>
+                        
+                        
                     </StackPanel>
                 </Border>
             </Button>
@@ -198,6 +202,7 @@
                                    TextAlignment="Center"
                                    FontSize="14"
                                    Foreground="#8B7327"/>
+                        
                     </StackPanel>
                 </Border>
             </Button>
@@ -213,6 +218,7 @@
                        Foreground="#6A8391"
                        TextWrapping="Wrap"
                        HorizontalAlignment="Center"/>
+            
         </Border>
     </Grid>
 </Window>
