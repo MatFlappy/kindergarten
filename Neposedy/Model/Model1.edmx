@@ -1,0 +1,810 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище NeposedyDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Announcements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="PublishDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentFullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="ChildFullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ChildBirthDate" Type="date" />
+          <Property Name="DesiredGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ChildParents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="RelationshipType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="AdmissionDate" Type="date" />
+          <Property Name="MedicalInfo" Type="nvarchar" MaxLength="500" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AgeRange" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherId" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="NoteDate" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="30" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="30" />
+          <Property Name="Education" Type="nvarchar" MaxLength="150" />
+          <Property Name="ExperienceYears" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Announcem__Group__52593CB8">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Announcem__Teach__534D60F1">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attendanc__Child__4BAC3F29">
+          <End Role="Children" Type="Self.Children" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChildPare__Child__47DBAE45">
+          <End Role="Children" Type="Self.Children" Multiplicity="1" />
+          <End Role="ChildParents" Type="Self.ChildParents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildParents">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChildPare__Paren__48CFD27E">
+          <End Role="Parents" Type="Self.Parents" Multiplicity="1" />
+          <End Role="ChildParents" Type="Self.ChildParents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildParents">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Children__GroupI__44FF419A">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groups__TeacherI__4222D4EF">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notes__ChildId__4E88ABD4">
+          <End Role="Children" Type="Self.Children" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notes__TeacherId__4F7CD00D">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parents__UserId__3B75D760">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Parents" Type="Self.Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teachers__UserId__3F466844">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище NeposedyDBModelContainer">
+          <EntitySet Name="Announcements" EntityType="Self.Announcements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChildParents" EntityType="Self.ChildParents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parents" EntityType="Self.Parents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Announcem__Group__52593CB8" Association="Self.FK__Announcem__Group__52593CB8">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Announcem__Teach__534D60F1" Association="Self.FK__Announcem__Teach__534D60F1">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attendanc__Child__4BAC3F29" Association="Self.FK__Attendanc__Child__4BAC3F29">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChildPare__Child__47DBAE45" Association="Self.FK__ChildPare__Child__47DBAE45">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="ChildParents" EntitySet="ChildParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChildPare__Paren__48CFD27E" Association="Self.FK__ChildPare__Paren__48CFD27E">
+            <End Role="Parents" EntitySet="Parents" />
+            <End Role="ChildParents" EntitySet="ChildParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Children__GroupI__44FF419A" Association="Self.FK__Children__GroupI__44FF419A">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groups__TeacherI__4222D4EF" Association="Self.FK__Groups__TeacherI__4222D4EF">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notes__ChildId__4E88ABD4" Association="Self.FK__Notes__ChildId__4E88ABD4">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notes__TeacherId__4F7CD00D" Association="Self.FK__Notes__TeacherId__4F7CD00D">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parents__UserId__3B75D760" Association="Self.FK__Parents__UserId__3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Parents" EntitySet="Parents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teachers__UserId__3F466844" Association="Self.FK__Teachers__UserId__3F466844">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NeposedyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Announcements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Announcem__Group__52593CB8" FromRole="Announcements" ToRole="Groups" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK__Announcem__Teach__534D60F1" FromRole="Announcements" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentFullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChildFullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChildBirthDate" Type="DateTime" Precision="0" />
+          <Property Name="DesiredGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Children" Relationship="Self.FK__Attendanc__Child__4BAC3F29" FromRole="Attendance" ToRole="Children" />
+        </EntityType>
+        <EntityType Name="ChildParents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="RelationshipType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Children" Relationship="Self.FK__ChildPare__Child__47DBAE45" FromRole="ChildParents" ToRole="Children" />
+          <NavigationProperty Name="Parents" Relationship="Self.FK__ChildPare__Paren__48CFD27E" FromRole="ChildParents" ToRole="Parents" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="AdmissionDate" Type="DateTime" Precision="0" />
+          <Property Name="MedicalInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Attendance" Relationship="Self.FK__Attendanc__Child__4BAC3F29" FromRole="Children" ToRole="Attendance" />
+          <NavigationProperty Name="ChildParents" Relationship="Self.FK__ChildPare__Child__47DBAE45" FromRole="Children" ToRole="ChildParents" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Children__GroupI__44FF419A" FromRole="Children" ToRole="Groups" />
+          <NavigationProperty Name="Notes1" Relationship="Self.FK__Notes__ChildId__4E88ABD4" FromRole="Children" ToRole="Notes" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgeRange" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK__Announcem__Group__52593CB8" FromRole="Groups" ToRole="Announcements" />
+          <NavigationProperty Name="Children" Relationship="Self.FK__Children__GroupI__44FF419A" FromRole="Groups" ToRole="Children" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK__Groups__TeacherI__4222D4EF" FromRole="Groups" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="NoteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Children" Relationship="Self.FK__Notes__ChildId__4E88ABD4" FromRole="Notes" ToRole="Children" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK__Notes__TeacherId__4F7CD00D" FromRole="Notes" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Parents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChildParents" Relationship="Self.FK__ChildPare__Paren__48CFD27E" FromRole="Parents" ToRole="ChildParents" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Parents__UserId__3B75D760" FromRole="Parents" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Education" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExperienceYears" Type="Int32" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK__Announcem__Teach__534D60F1" FromRole="Teachers" ToRole="Announcements" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Groups__TeacherI__4222D4EF" FromRole="Teachers" ToRole="Groups" />
+          <NavigationProperty Name="Notes" Relationship="Self.FK__Notes__TeacherId__4F7CD00D" FromRole="Teachers" ToRole="Notes" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Teachers__UserId__3F466844" FromRole="Teachers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Parents" Relationship="Self.FK__Parents__UserId__3B75D760" FromRole="Users" ToRole="Parents" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK__Teachers__UserId__3F466844" FromRole="Users" ToRole="Teachers" />
+        </EntityType>
+        <Association Name="FK__Announcem__Group__52593CB8">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Announcem__Teach__534D60F1">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Announcements" Type="Self.Announcements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcements">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attendanc__Child__4BAC3F29">
+          <End Role="Children" Type="Self.Children" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChildPare__Child__47DBAE45">
+          <End Role="Children" Type="Self.Children" Multiplicity="1" />
+          <End Role="ChildParents" Type="Self.ChildParents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildParents">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChildPare__Paren__48CFD27E">
+          <End Role="Parents" Type="Self.Parents" Multiplicity="1" />
+          <End Role="ChildParents" Type="Self.ChildParents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildParents">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Children__GroupI__44FF419A">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notes__ChildId__4E88ABD4">
+          <End Role="Children" Type="Self.Children" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groups__TeacherI__4222D4EF">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notes__TeacherId__4F7CD00D">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parents__UserId__3B75D760">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Parents" Type="Self.Parents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teachers__UserId__3F466844">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NeposedyDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Announcements" EntityType="Self.Announcements" />
+          <EntitySet Name="Applications" EntityType="Self.Applications" />
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" />
+          <EntitySet Name="ChildParents" EntityType="Self.ChildParents" />
+          <EntitySet Name="Children" EntityType="Self.Children" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="Notes" EntityType="Self.Notes" />
+          <EntitySet Name="Parents" EntityType="Self.Parents" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Announcem__Group__52593CB8" Association="Self.FK__Announcem__Group__52593CB8">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Announcem__Teach__534D60F1" Association="Self.FK__Announcem__Teach__534D60F1">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Announcements" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attendanc__Child__4BAC3F29" Association="Self.FK__Attendanc__Child__4BAC3F29">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChildPare__Child__47DBAE45" Association="Self.FK__ChildPare__Child__47DBAE45">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="ChildParents" EntitySet="ChildParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChildPare__Paren__48CFD27E" Association="Self.FK__ChildPare__Paren__48CFD27E">
+            <End Role="Parents" EntitySet="Parents" />
+            <End Role="ChildParents" EntitySet="ChildParents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Children__GroupI__44FF419A" Association="Self.FK__Children__GroupI__44FF419A">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notes__ChildId__4E88ABD4" Association="Self.FK__Notes__ChildId__4E88ABD4">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groups__TeacherI__4222D4EF" Association="Self.FK__Groups__TeacherI__4222D4EF">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notes__TeacherId__4F7CD00D" Association="Self.FK__Notes__TeacherId__4F7CD00D">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parents__UserId__3B75D760" Association="Self.FK__Parents__UserId__3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Parents" EntitySet="Parents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teachers__UserId__3F466844" Association="Self.FK__Teachers__UserId__3F466844">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище NeposedyDBModelContainer" CdmEntityContainer="NeposedyDBEntities">
+          <EntitySetMapping Name="Announcements">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Announcements">
+              <MappingFragment StoreEntitySet="Announcements">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Applications">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentFullName" ColumnName="ParentFullName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ChildFullName" ColumnName="ChildFullName" />
+                <ScalarProperty Name="ChildBirthDate" ColumnName="ChildBirthDate" />
+                <ScalarProperty Name="DesiredGroup" ColumnName="DesiredGroup" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendance">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChildParents">
+            <EntityTypeMapping TypeName="NeposedyDBModel.ChildParents">
+              <MappingFragment StoreEntitySet="ChildParents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="RelationshipType" ColumnName="RelationshipType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Children">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Children">
+              <MappingFragment StoreEntitySet="Children">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="AdmissionDate" ColumnName="AdmissionDate" />
+                <ScalarProperty Name="MedicalInfo" ColumnName="MedicalInfo" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgeRange" ColumnName="AgeRange" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Notes">
+              <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="NoteDate" ColumnName="NoteDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parents">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Parents">
+              <MappingFragment StoreEntitySet="Parents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NeposedyDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Teachers">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="ExperienceYears" ColumnName="ExperienceYears" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NeposedyDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
