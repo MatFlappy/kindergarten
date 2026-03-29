@@ -62,11 +62,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WindowsApp\AnnouncementsWindow.xaml.cs">
+      <DependentUpon>AnnouncementsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\ApplicationsWindow.xaml.cs">
+      <DependentUpon>ApplicationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\AttendanceWindow.xaml.cs">
+      <DependentUpon>AttendanceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsApp\ChildDetailsWindow.xaml.cs">
       <DependentUpon>ChildDetailsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsApp\MyChildrenWindow.xaml.cs">
       <DependentUpon>MyChildrenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\MyGroupWindow.xaml.cs">
+      <DependentUpon>MyGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsApp\NotesWindow.xaml.cs">
+      <DependentUpon>NotesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsApp\ParentAnnouncementsWindow.xaml.cs">
       <DependentUpon>ParentAnnouncementsWindow.xaml</DependentUpon>
@@ -84,6 +99,18 @@
       <DependentUpon>TeacherWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="WindowsApp\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\AnnouncementsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\ApplicationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\AttendanceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +189,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WindowsApp\MyChildrenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\MyGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsApp\NotesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

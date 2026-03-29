@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Neposedy.WindowsApp;
+using System.Windows;
 
 namespace NeposedyApp.Windows
 {
@@ -36,7 +37,9 @@ namespace NeposedyApp.Windows
 
         private void Applications_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно заявок сделаем следующим.");
+            ApplicationsWindow applicationsWindow = new ApplicationsWindow();
+            applicationsWindow.Show();
+            Close();
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Neposedy.WindowsApp;
+using System.Windows;
 
 namespace NeposedyApp.Windows
 {
@@ -16,22 +17,30 @@ namespace NeposedyApp.Windows
 
         private void MyGroup_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно моей группы сделаем следующим.");
+            MyGroupWindow myGroupWindow = new MyGroupWindow();
+            myGroupWindow.Show();
+            Close();
         }
 
         private void Attendance_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно посещаемости сделаем следующим.");
+            AttendanceWindow attendanceWindow = new AttendanceWindow();
+            attendanceWindow.Show();
+            Close();
         }
 
         private void Notes_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно заметок сделаем следующим.");
+            NotesWindow notesWindow = new NotesWindow();
+            notesWindow.Show();
+            Close();
         }
 
         private void Announcements_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно объявлений сделаем следующим.");
+            AnnouncementsWindow announcementsWindow = new AnnouncementsWindow();
+            announcementsWindow.Show();
+            Close();
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
